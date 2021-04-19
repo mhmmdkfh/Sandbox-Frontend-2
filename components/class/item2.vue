@@ -9,6 +9,7 @@
       <nuxt-link :to="'/class/'+id">
         <h5 class="card-title">{{title}}</h5>
       </nuxt-link>
+      <p class="text-justify">{{description}}</p>
       <section v-if="homeworks.length">
         <h5>homework</h5>
         <ul>
@@ -40,6 +41,10 @@ export default {
     homeworks: {
       type: Array,
       default: () => [],
+    },
+    description: {
+      type: String,
+      default: "",
     },
   },
 };

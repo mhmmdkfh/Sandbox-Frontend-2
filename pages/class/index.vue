@@ -3,7 +3,11 @@
     <PartialsTitle title="Class" />
     <div class="row">
       <div class="col-md-4" v-for="(item,i) in listClass" :key="i">
-        <class-item-2 :title="item.title" :id="item.id" :homeworks="item.homeworks">
+        <class-item-2 :title="item.name" :id="item.id" :description="item.description" :img="item.photo">
+          <template v-slot:footer>
+            <p>Diikuti sebanyak : {{item.students.length}} Orang</p>
+            <p>Pemateri : {{item.tutors[0].name}}</p>
+          </template>
         </class-item-2>
       </div>
     </div>
@@ -13,35 +17,12 @@
 export default {
   data() {
     return {
-      listClass: [
-        {
-          id: "X122",
-          title: "Fullstack 1",
-          homeworks: [
-            { id: 1, title: "Tugas A" },
-            { id: 2, title: "Tugas B" },
-          ],
-        },
-        {
-          id: "1512",
-          title: "Fullstack 2",
-          homeworks: [],
-        },
-        {
-          id: "61712",
-          title: "Fullstack 3",
-          homeworks: [],
-        },
-        {
-          id: "y6127",
-          title: "Fullstack 4",
-          homeworks: [
-            { id: 3, title: "Tugas A" },
-            { id: 4, title: "Tugas B" },
-          ],
-        },
-      ],
+      listClass: [],
     };
+  },
+  async fetch() {
+    const req = await this.$axios.$get("class");
+    if (req.success) this.listClass = req.data;
   },
 };
 </script>

@@ -64,7 +64,9 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    baseURL: "https://fullstack-classroom.herokuapp.com"
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
