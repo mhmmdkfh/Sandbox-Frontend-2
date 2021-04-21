@@ -14,15 +14,23 @@
   </div>
 </template>
 <script>
+import { mapMutations } from "vuex";
 export default {
-  data() {
-    return {
-      listClass: [],
-    };
+  computed: {
+    listClass() {
+      return this.$store.state.class.listClass;
+    },
   },
   async fetch() {
-    const req = await this.$axios.$get("class");
-    if (req.success) this.listClass = req.data;
+    if (!this.listClass.length) {
+      const req = await this.$axios.$get("class");
+      this.SET_CLASS(req.data);
+    }
+  },
+  methods: {
+    ...mapMutations({
+      SET_CLASS: "class/setClass",
+    }),
   },
 };
 </script>

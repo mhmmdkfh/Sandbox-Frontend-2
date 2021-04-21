@@ -26,6 +26,7 @@ button {
   bottom: 3em;
   right: 3em;
   padding: 1.5em;
+  z-index: 99999;
 }
 i {
   font-size: 1.2em;

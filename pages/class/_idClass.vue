@@ -2,40 +2,45 @@
   <div>
     <div class="jumbotron jumbotron-fluid rounded bg-white">
       <div class="container">
-        <h1 class="display-4">{{detail.name}}</h1>
-        <p class="lead">{{detail.description}}</p>
+        <h1 class="display-4">{{currentClass.name}}</h1>
+        <p class="lead">{{currentClass.description}}</p>
       </div>
     </div>
-    {{detail}}
+    {{currentClass}}
   </div>
 </template>
 <script>
+import { mapMutations } from "vuex";
 export default {
-  data() {
-    return {
-      detail: {
-        id: "",
-        code: "",
-        name: "",
-        dateStart: "",
-        dateEnd: "",
-        description: "",
-        photo: "",
-        createdAt: "",
-        updatedAt: "",
-        students: [],
-        spv: [],
-        tutors: [],
-      },
-    };
+  computed: {
+    currentClass() {
+      return this.$store.state.class.current;
+    },
   },
   async fetch() {
-    const { data } = await this.$axios({
-      method: "GET",
-      url: "class",
-      params: { id: this.$route.params.idClass },
-    });
-    this.detail = data.data[0];
+    if (this.$store.state.class.listClass.length) {
+      this.$store.state.class.listClass.forEach((dataClass) => {
+        if (dataClass.id == this.$route.params.idClass)
+          this.SET_CURRENT_CLASS(dataClass);
+      });
+    }
+    
+    if (
+      !this.currentClass.id ||
+      this.$route.params.idClass != this.currentClass.id
+    ) {
+      const { data } = await this.$axios({
+        method: "GET",
+        url: "class",
+        params: { id: this.$route.params.idClass },
+      });
+      this.SET_CURRENT_CLASS(data.data[0]);
+    }
+  },
+  methods: {
+    ...mapMutations({
+      SET_CURRENT_CLASS: "class/setCurrent",
+    }),
   },
 };
 </script>
