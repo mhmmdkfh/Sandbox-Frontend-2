@@ -14,7 +14,7 @@
   </div>
 </template>
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations, mapActions } from "vuex";
 export default {
   computed: {
     listClass() {
@@ -24,12 +24,17 @@ export default {
   async fetch() {
     if (!this.listClass.length) {
       const req = await this.$axios.$get("class");
-      this.SET_CLASS(req.data);
+      // this.SET_CLASS(req.data);
+      this.$store.dispatch("class/setClass", req.data);
+      // this.SET_CLASS(req.data);
     }
   },
   methods: {
     ...mapMutations({
       SET_CLASS: "class/setClass",
+    }),
+    ...mapActions({
+      SET_CLASS: "class/SET_CLASS",
     }),
   },
 };

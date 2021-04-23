@@ -26,3 +26,9 @@ export const mutations = {
     state.current = currentClass;
   }
 };
+
+export const actions = {
+  setClass({ commit }, data) {
+    commit("setClass", data.reverse());
+  }
+};

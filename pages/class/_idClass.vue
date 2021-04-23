@@ -6,7 +6,7 @@
         <p class="lead">{{currentClass.description}}</p>
       </div>
     </div>
-    {{currentClass}}
+    <class-schedule v-for="item in listSchedule" :key="item.id" :data="item" />
   </div>
 </template>
 <script>
@@ -16,6 +16,9 @@ export default {
     currentClass() {
       return this.$store.state.class.current;
     },
+    listSchedule() {
+      return this.$store.state.schedule.list;
+    },
   },
   async fetch() {
     if (this.$store.state.class.listClass.length) {
@@ -24,7 +27,6 @@ export default {
           this.SET_CURRENT_CLASS(dataClass);
       });
     }
-    
     if (
       !this.currentClass.id ||
       this.$route.params.idClass != this.currentClass.id
@@ -36,11 +38,25 @@ export default {
       });
       this.SET_CURRENT_CLASS(data.data[0]);
     }
+    this.getSchedule();
+    // action
+    // this.$store.dispatch("schedule/setList", xx);
+
+    // mutation
+    // this.$store.commit("schedule/setList", xx);
   },
   methods: {
     ...mapMutations({
       SET_CURRENT_CLASS: "class/setCurrent",
     }),
+    async getSchedule() {
+      const req = await this.$axios.$get("/schedule", {
+        params: { classId: this.$route.params.idClass },
+      });
+      if (req.success) {
+        this.$store.dispatch("schedule/setList", req.data);
+      }
+    },
   },
 };
 </script>
