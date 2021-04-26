@@ -2,11 +2,8 @@
   <div class="form-group">
     <label>{{name}}</label>
     <div class="row">
-      <div class="col-md-9">
-        <input type="text" class="form-control" v-model="value">
-      </div>
-      <div class="col-md-3">
-        <slot></slot>
+      <div class="col-md-12">
+        <input :type="type" class="form-control" v-model="value" :required="!noRequired">
       </div>
     </div>
   </div>
@@ -16,6 +13,8 @@ export default {
   props: {
     name: { type: String, default: "Default Input Text" },
     val: { type: String, default: "" },
+    type: { type: String, default: "text" },
+    noRequired: { type: Boolean, default: false },
   },
   computed: {
     value: {

@@ -60,9 +60,36 @@ export default {
     // https://go.nuxtjs.dev/axios
     "@nuxtjs/axios",
     // https://go.nuxtjs.dev/pwa
-    "@nuxtjs/pwa"
+    "@nuxtjs/pwa",
+    "@nuxtjs/auth-next",
+    "vue-sweetalert2/nuxt"
   ],
-
+  auth: {
+    strategies: {
+      local: {
+        token: {
+          // property: "data.token",
+          type: "",
+          name: "x-auth-token"
+        },
+        user: {
+          property: "data"
+        },
+        endpoints: {
+          login: {
+            url: "https://fullstack-classroom.herokuapp.com/users/login",
+            method: "POST",
+            propertyName: "data.token"
+          },
+          user: {
+            url: "/users/profile",
+            method: "GET"
+          },
+          logout: false
+        }
+      }
+    }
+  },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     baseURL: "https://fullstack-classroom.herokuapp.com"

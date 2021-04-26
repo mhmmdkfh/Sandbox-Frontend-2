@@ -4,7 +4,6 @@
     <atoms-float-button @click.native="increment" />
     <atoms-card>
       <template v-slot:left>
-        <h1>{{fullname}}</h1>
         <h2>State Counter : {{$store.state.example.counter}}</h2>
       </template>
       <template v-slot:right>
