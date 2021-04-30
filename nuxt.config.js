@@ -47,7 +47,7 @@ export default {
   css: ["@/assets/css/style.css", "@/assets/css/components.css"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: ["~/plugins/mixins"],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -68,7 +68,7 @@ export default {
     strategies: {
       local: {
         token: {
-          // property: "data.token",
+          property: "data.token",
           type: "",
           name: "x-auth-token"
         },

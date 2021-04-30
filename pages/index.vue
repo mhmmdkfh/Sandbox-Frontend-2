@@ -9,6 +9,7 @@
       <template v-slot:right>
         <FormInput name="Firstname" :val="firstname" @value="(val)=>firstname=val" />
         <FormInput name="Lastname" :val="lastname" @value="(val)=>lastname=val" />
+        <FormInput name="Rupiah" :val="nilaiRupiah" @value="(val)=>nilaiRupiah=rupiah(val)" />
       </template>
     </atoms-card>
     <atoms-card></atoms-card>
@@ -24,6 +25,7 @@ export default {
       books: ["vue 1", "vue 2", "vue 3"],
       firstname: "Ghany",
       lastname: "Ersa",
+      nilaiRupiah: 0,
       question: "",
       answer: "Questions usually contain a question mark. ;-)",
     };

@@ -31,12 +31,12 @@ export default {
       !this.currentClass.id ||
       this.$route.params.idClass != this.currentClass.id
     ) {
-      const { data } = await this.$axios({
-        method: "GET",
-        url: "class",
+      const req = await this.requestGet({
+        endpoint: "class",
+        notif: true,
         params: { id: this.$route.params.idClass },
       });
-      this.SET_CURRENT_CLASS(data.data[0]);
+      if (req.success) this.SET_CURRENT_CLASS(req.data[0]);
     }
     this.getSchedule();
     // action

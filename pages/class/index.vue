@@ -5,7 +5,7 @@
       <div class="col-md-4" v-for="(item,i) in listClass" :key="i">
         <class-item-2 :title="item.name" :id="item.id" :description="item.description" :img="item.photo">
           <template v-slot:footer>
-            <p>Diikuti sebanyak : {{item.students.length}} Orang</p>
+            <p @click="entryClass(item)">Diikuti sebanyak : {{item.students.length}} Orang</p>
             <p>Pemateri : {{item.tutors[0].name}}</p>
           </template>
         </class-item-2>
@@ -15,7 +15,9 @@
 </template>
 <script>
 import { mapMutations, mapActions } from "vuex";
+import request from "~/mixins/request";
 export default {
+  mixins: [request],
   computed: {
     listClass() {
       return this.$store.state.class.listClass;
@@ -23,7 +25,7 @@ export default {
   },
   async fetch() {
     if (!this.listClass.length) {
-      const req = await this.$axios.$get("class");
+      const req = await this.requestGet({ endpoint: "class" });
       // this.SET_CLASS(req.data);
       this.$store.dispatch("class/setClass", req.data);
       // this.SET_CLASS(req.data);
@@ -36,6 +38,12 @@ export default {
     ...mapActions({
       SET_CLASS: "class/SET_CLASS",
     }),
+    async entryClass({ name, id }) {
+      const { isConfirmed } = await this.konfirm("masuk ke kelas " + name);
+      if (isConfirmed) {
+        this.$router.push("class/" + id);
+      }
+    },
   },
 };
 </script>

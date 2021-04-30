@@ -8,7 +8,7 @@
       <input type="checkbox" id="checkbox" v-model="checked">
       <label for="checkbox">{{ checked }}</label>
     </section>
-    
+
     <section>
       <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
       <label for="jack">Jack</label>
