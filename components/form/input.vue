@@ -3,7 +3,7 @@
     <label>{{name}}</label>
     <div class="row">
       <div class="col-md-12">
-        <input :type="type" class="form-control" v-model="value" :required="!noRequired">
+        <input :type="type" class="form-control" v-model="value" :required="!noRequired" :readonly="!noReadonly">
       </div>
     </div>
   </div>
@@ -15,6 +15,7 @@ export default {
     val: { type: String, default: "" },
     type: { type: String, default: "text" },
     noRequired: { type: Boolean, default: false },
+    noReadonly: {type: Boolean, default: true},
   },
   computed: {
     value: {

@@ -9,20 +9,11 @@
       </div>
       <ul class="sidebar-menu">
         <li class="menu-header">Dashboard</li>
-        <li :class="$route.path=='/'?'active':''">
-          <nuxt-link class="nav-link" to="/">Home</nuxt-link>
-        </li>
         <li :class="$route.path=='/profile'?'active':''">
           <nuxt-link class="nav-link" to="/profile">Profile</nuxt-link>
         </li>
-        <li :class="$route.path=='/class'?'active':''">
-          <nuxt-link class="nav-link" to="/class">Class</nuxt-link>
-        </li>
-        <li :class="$route.path=='/modeling'?'active':''">
-          <nuxt-link class="nav-link" to="/modeling">Modeling</nuxt-link>
-        </li>
-        <li :class="$route.path=='/modelingKedua'?'active':''">
-          <nuxt-link class="nav-link" to="/modelingKedua">Modeling Kedua</nuxt-link>
+        <li :class="$route.path=='/user'?'active':''">
+          <nuxt-link class="nav-link" to="/user">List User</nuxt-link>
         </li>
       </ul>
     </aside>

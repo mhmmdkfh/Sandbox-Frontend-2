@@ -3,7 +3,7 @@
     <div class="d-flex align-items-center">
       <div class="card" style="width:30vw">
         <div class="card-body text-center pb-5">
-          <h3>Authentication</h3>
+          <h3>Login</h3>
           <hr>
           <form @submit.prevent="userLogin">
             <FormInput name="Email" type="email" :val="login.email" @value="(val)=>login.email=val" />
@@ -38,7 +38,7 @@ export default {
             "Selamat datang di sistem kami.",
             "success"
           );
-          this.$router.push("/");
+          this.$router.push("/user");
         }
       } catch (err) {
         console.log(err);

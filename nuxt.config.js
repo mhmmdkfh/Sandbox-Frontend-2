@@ -77,7 +77,7 @@ export default {
         },
         endpoints: {
           login: {
-            url: "https://fullstack-classroom.herokuapp.com/users/login",
+            url: "https://mybook-order.herokuapp.com/users/login",
             method: "POST",
             propertyName: "data.token"
           },
@@ -92,7 +92,7 @@ export default {
   },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: "https://fullstack-classroom.herokuapp.com"
+    baseURL: "https://mybook-order.herokuapp.com"
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
