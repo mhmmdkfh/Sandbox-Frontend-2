@@ -78,7 +78,6 @@ export default {
             }
         },
         async userUpdate() {
-            
             try {
                 let { data } = await this.requestPut({
                     endpoint: "users",
